@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HMB_Client.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Domain = HMB_Client.Domain;
 
 namespace HMB_Client
 {
@@ -23,6 +25,14 @@ namespace HMB_Client
         public MainWindow()
         {
             InitializeComponent();
+            new Bootstraper().Run();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var obj = new Domain.Object() { Id = 1, Code = "FRST_T", Name = "Treat 1"};
+            var repo = new ObjectRepository().Save(obj);
+
         }
     }
 }

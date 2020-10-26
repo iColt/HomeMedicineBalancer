@@ -1,4 +1,5 @@
-﻿using HMB_Client.Interfaces;
+﻿using HMB_Client.Helpers;
+using HMB_Client.Interfaces;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,12 @@ namespace HMB_Client.Core
 
 		public T Save(T entity)
 		{
-			Session.Save(entity);
+			using (ISession session = NHibernateHelper.OpenSession())
+			using (ITransaction transaction = session.BeginTransaction())
+			{
+				session.Save(entity);
+				transaction.Commit();
+			}
 
 			return entity;
 		}

@@ -6,12 +6,12 @@ namespace HMB_Client.Domain
 {
     public class Object
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public string Code { get; set; }
+        public virtual string Code { get; set; }
 
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
-        public DateTime ValidTo { get; set; }
+        public virtual DateTime ValidTo { get; set; }
     }
 }
