@@ -10,13 +10,31 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" Click="Button_Click">Save Entity</Button>
+        
+        <Button Grid.Column="0" Grid.Row="1" Command="{Binding AddCommand}">Save Entity</Button>
+
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <TextBlock Text="Name" />
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Code" />
+            <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        
+        <ListBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Medicines, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Id}" />
+                        <TextBlock Text="{Binding Path=Code}" />
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

@@ -17,21 +17,21 @@ using Domain = HMB_Client.Domain;
 
 namespace HMB_Client
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            //TODO: startup before create Main model
             new Bootstraper().Run();
+
+            DataContext = new MainViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var obj = new Domain.Object() { Id = 1, Code = "FRST_T", Name = "Treat 1"};
-            var repo = new ObjectRepository().Save(obj);
+            //var repo = new ObjectRepository().Save(obj);
 
         }
     }
