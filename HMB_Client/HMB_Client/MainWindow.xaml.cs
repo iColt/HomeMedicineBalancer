@@ -1,38 +1,18 @@
-﻿using HMB_Client.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Domain = HMB_Client.Domain;
+﻿using System.Windows;
+using Unity;
 
 namespace HMB_Client
 {
     public partial class MainWindow : Window
     {
+        //TODO: Move unity registrations to start point of app
         public MainWindow()
         {
             InitializeComponent();
-
-            //TODO: startup before create Main model
-            new Bootstraper().Run();
-
-            DataContext = new MainViewModel();
+            new Bootstraper().Run(out var unityContainer);
+            DataContext = unityContainer.Resolve<MainViewModel>();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //var repo = new ObjectRepository().Save(obj);
-
-        }
+  
     }
 }

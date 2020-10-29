@@ -1,4 +1,5 @@
 ﻿using HMB_Client.Core;
+using HMB_Client.Interfaces;
 using HMB_Client.Models;
 using HMB_Client.Presentation;
 using HMB_Client.Repositories;
@@ -9,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Unity;
 
 namespace HMB_Client
 {
@@ -16,7 +18,7 @@ namespace HMB_Client
     {
         private string _name;
         private string _code;
-        private MedicineService _medicineService;
+        private readonly IMedicineService _medicineService;
         private ObservableCollection<Medicine> _medicines;
 
         public ObservableCollection<Medicine> Medicines
@@ -51,10 +53,10 @@ namespace HMB_Client
 
         public RelayCommand AddCommand { get; set; }
 
-        public MainViewModel()
+        public MainViewModel(IMedicineService medicineService)
         {
             AddCommand = new RelayCommand(x => AddMedicine(), y => CanAdd());
-            _medicineService = new MedicineService(new ObjectRepository());
+            _medicineService = medicineService;
             Medicines = new ObservableCollection<Medicine>(_medicineService.GetListMedicine());
         }
 

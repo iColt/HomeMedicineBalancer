@@ -1,4 +1,5 @@
-﻿using HMB_Client.Models;
+﻿using HMB_Client.Interfaces;
+using HMB_Client.Models;
 using HMB_Client.Repositories;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,9 @@ using System.Text;
 
 namespace HMB_Client.Services
 {
-    public class MedicineService
+    public class MedicineService : IMedicineService
     {
-        private ObjectRepository _objectRepository;
+        private readonly ObjectRepository _objectRepository;
 
         public MedicineService(ObjectRepository objectRepository)
         {
