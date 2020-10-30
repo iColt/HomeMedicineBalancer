@@ -6,13 +6,13 @@ namespace HMB_Client.Models
 {
     public class Medicine
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual string Code { get; set; }
+        public string Code { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual DateTime ValidTo { get; set; }
+        public DateTime ValidTo { get; set; }
 
     }
 }

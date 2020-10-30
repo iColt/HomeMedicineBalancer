@@ -10,5 +10,7 @@ namespace HMB_Client.Interfaces
         IList<Medicine> GetListMedicine();
         void Save(Medicine medicine);
 
+        void Delete(Medicine medicine);
+
     }
 }

@@ -26,16 +26,36 @@ namespace HMB_Client.Core
             return session.Query<T>();
         }
 
+        public T GetById(int id)
+        {
+            using (ISession session = sessionFactory.OpenSession())
+            {
+                return session.Get<T>(id);
+            }
+        }
+
         public T Save(T entity)
         {
             using (ISession session = sessionFactory.OpenSession())
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                    session.Save(entity);
+                    //TODO: Check how SaveOrUpdate works
+                    session.SaveOrUpdate(entity);
                     transaction.Commit();
                 }
 
             return entity;
+        }
+
+        public void Delete(T entity)
+        {
+            using (ISession session = sessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                //TODO: Check how SaveOrUpdate works
+                session.Delete(entity);
+                transaction.Commit();
+            }
         }
 
         #endregion

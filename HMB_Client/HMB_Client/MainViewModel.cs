@@ -16,58 +16,94 @@ namespace HMB_Client
 {
     public class MainViewModel : ViewModelBase
     {
-        private string _name;
-        private string _code;
-        private readonly IMedicineService _medicineService;
-        private ObservableCollection<Medicine> _medicines;
+        private readonly IMedicineService medicineService;
+        private Medicine selectedMedicine;
+        private ObservableCollection<Medicine> medicines;
 
         public ObservableCollection<Medicine> Medicines
         {
-            get { return _medicines; }
+            get { return medicines; }
             set
             {
-                _medicines = value;
+                medicines = value;
                 OnPropertyChanged(nameof(Medicines));
+            }
+        }
+
+        public Medicine SelectedMedicine
+        {
+            get { return selectedMedicine; }
+            set
+            {
+                selectedMedicine = value;
+                OnPropertyChanged(nameof(SelectedMedicine));
+                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(Code));
             }
         }
 
         public string Name
         {
-            get { return _name; }
+            get { return selectedMedicine?.Name; }
             set
             {
-                _name = value;
+                selectedMedicine.Name = value;
                 OnPropertyChanged(nameof(Name));
             }
         }
 
         public string Code
         {
-            get { return _code; }
+            get { return selectedMedicine?.Code; }
             set
             {
-                _code = value;
+                selectedMedicine.Code = value;
                 OnPropertyChanged(nameof(Code));
             }
         }
 
-        public RelayCommand AddCommand { get; set; }
+        public RelayCommand AddNewCommand { get; set; }
+
+        public RelayCommand SaveCommand { get; set; }
+
+        public RelayCommand DeleteCommand { get; set; }
 
         public MainViewModel(IMedicineService medicineService)
         {
-            AddCommand = new RelayCommand(x => AddMedicine(), y => CanAdd());
-            _medicineService = medicineService;
-            Medicines = new ObservableCollection<Medicine>(_medicineService.GetListMedicine());
+            AddNewCommand = new RelayCommand(x => AddNewMedicine(), y => CanAdd());
+            SaveCommand = new RelayCommand(x => SaveMedicine(), y => CanSave());
+            DeleteCommand = new RelayCommand(x => Delete());
+            SelectedMedicine = new Medicine();
+            this.medicineService = medicineService;
+            Medicines = new ObservableCollection<Medicine>(this.medicineService.GetListMedicine());
         }
 
-        public void AddMedicine()
+        public void AddNewMedicine()
         {
-            _medicineService.Save(new Medicine() { Code = Code, Name = Name });
-            Medicines = new ObservableCollection<Medicine>(_medicineService.GetListMedicine());
+            SelectedMedicine = new Medicine();
+        }
+
+        public void SaveMedicine()
+        {
+            medicineService.Save(SelectedMedicine);
+            Medicines = new ObservableCollection<Medicine>(medicineService.GetListMedicine());
+            SelectedMedicine = new Medicine();
+        }
+
+        public void Delete()
+        {
+            medicineService.Delete(SelectedMedicine);
+            //TODO: think of reloading model or add/delete item properly
+            Medicines = new ObservableCollection<Medicine>(medicineService.GetListMedicine());
         }
 
         //TODO: We need in base class RaiseCanExecute
         public bool CanAdd()
+        {
+            return true;
+        }
+
+        public bool CanSave()
         {
             return true;
         }
