@@ -73,14 +73,15 @@ namespace HMB_Client
             AddNewCommand = new RelayCommand(x => AddNewMedicine(), y => CanAdd());
             SaveCommand = new RelayCommand(x => SaveMedicine(), y => CanSave());
             DeleteCommand = new RelayCommand(x => Delete());
-            SelectedMedicine = new Medicine();
+            AddNewMedicine();
             this.medicineService = medicineService;
             Medicines = new ObservableCollection<Medicine>(this.medicineService.GetListMedicine());
         }
 
         public void AddNewMedicine()
         {
-            SelectedMedicine = new Medicine();
+            //TODO: change to combobox of MedType
+            SelectedMedicine = new Medicine() { MedicineTypeId = 1, CreatedDate  = DateTime.Today };
         }
 
         public void SaveMedicine()
@@ -105,7 +106,7 @@ namespace HMB_Client
 
         public bool CanSave()
         {
-            return true;
+            return true; 
         }
     }
 }

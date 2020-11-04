@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HMB_Client.Domain
 {
-    public class Object
+    public abstract class Object
     {
         public virtual int Id { get; set; }
 
@@ -12,6 +12,7 @@ namespace HMB_Client.Domain
 
         public virtual string Name { get; set; }
 
-        public virtual DateTime ValidTo { get; set; }
+        public virtual DateTime CreatedDate { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HMB_Client.Core;
+using HMB_Client.Domain;
 using HMB_Client.Helpers;
 using HMB_Client.Interfaces;
 using NHibernate;
@@ -10,16 +11,16 @@ using Domain = HMB_Client.Domain;
 
 namespace HMB_Client.Repositories
 {
-    public class ObjectRepository : SqLiteRepository<Domain.Object>, IObjectRepository
+    public class MedicineRepository : SqLiteRepository<Medicine>, IMedicineRepository
     {
-        public ObjectRepository(ISessionFactory sessionFactory) : base(sessionFactory)
+        public MedicineRepository(ISessionFactory sessionFactory) : base(sessionFactory)
         {
         }
 
 
         #region ICustomerRepository members
 
-        public IEnumerable<Domain.Object> GetAll()
+        public IEnumerable<Medicine> GetAll()
         {
             using (ISession session = sessionFactory.OpenSession())
             {

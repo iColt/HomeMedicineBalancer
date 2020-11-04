@@ -45,7 +45,7 @@ namespace HMB_Client
         private void RegisterDependencies()
         {
             UnityContainer.RegisterInstance<ISessionFactory>(CreateSessionFactory());
-            UnityContainer.RegisterType<IObjectRepository, ObjectRepository>();
+            UnityContainer.RegisterType<IMedicineRepository, MedicineRepository>();
             UnityContainer.RegisterType<MainViewModel>();
             UnityContainer.RegisterType<IMedicineService, MedicineService>();
 
