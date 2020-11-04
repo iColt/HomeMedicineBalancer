@@ -1,8 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
 using HMB_Client.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HMB_Client.Mappers
 {
