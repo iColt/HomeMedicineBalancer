@@ -79,16 +79,15 @@ namespace HMB_Client
 
         public void SaveMedicine()
         {
-            medicineService.Save(SelectedMedicine);
-            Medicines = new ObservableCollection<Medicine>(medicineService.GetListMedicine());
-            SelectedMedicine = new Medicine();
+            Medicines.Add(medicineService.Save(SelectedMedicine));
+            AddNewMedicine();
         }
 
         public void Delete()
         {
             medicineService.Delete(SelectedMedicine);
-            //TODO: think of reloading model or add/delete item properly
-            Medicines = new ObservableCollection<Medicine>(medicineService.GetListMedicine());
+            Medicines.Remove(SelectedMedicine);
+            AddNewMedicine();
         }
 
         //TODO: We need in base class RaiseCanExecute

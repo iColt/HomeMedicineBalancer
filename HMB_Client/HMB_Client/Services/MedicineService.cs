@@ -28,7 +28,7 @@ namespace HMB_Client.Services
                 ).ToList();
         }
 
-        public void Save(Medicine medicine)
+        public Medicine Save(Medicine medicine)
         {
             var obj = new Domain.Medicine();
             if(medicine.Id != 0)
@@ -37,7 +37,7 @@ namespace HMB_Client.Services
             }
             //TODO: add mapper here
             FillObject(obj, medicine);
-            _medicineRepository.Save(obj);
+            return Extract(_medicineRepository.Save(obj));
         }
 
         public void FillObject(Domain.Medicine obj, Medicine medicine)
@@ -47,6 +47,20 @@ namespace HMB_Client.Services
             obj.MedicineTypeId = medicine.MedicineTypeId;
             obj.ValidTo = medicine.ValidTo;
             obj.CreatedDate = medicine.CreatedDate;
+        }
+
+        public Medicine Extract(Domain.Medicine obj)
+        {
+            return new Medicine()
+            {
+                Id = obj.Id,
+                Code = obj.Code,
+                Name = obj.Name,
+                ValidTo = obj.ValidTo,
+                MedicineTypeId = obj.MedicineTypeId,
+                CreatedDate = obj.CreatedDate
+            };
+
         }
 
         public void Delete(Medicine medicine)

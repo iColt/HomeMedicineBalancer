@@ -6,7 +6,7 @@ namespace HMB_Client.Interfaces
     public interface IMedicineService
     {
         IList<Medicine> GetListMedicine();
-        void Save(Medicine medicine);
+        Medicine Save(Medicine medicine);
 
         void Delete(Medicine medicine);
 
