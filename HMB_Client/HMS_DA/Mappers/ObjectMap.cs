@@ -1,10 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Domain = HMB_Client.Domain;
+using Domain = HMB_DA.Domain;
 
-namespace HMB_Client.Mappers
+namespace HMB_DA.Mappers
 {
 	public sealed class ObjectMap : ClassMap<Domain.Object>
 	{

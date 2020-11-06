@@ -1,18 +1,17 @@
 ﻿using HMB_Client.Interfaces;
 using HMB_Client.Models;
-using HMB_Client.Repositories;
-using System;
+using Domain = HMB_DA.Domain;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using HMB_DA.Interfaces;
 
 namespace HMB_Client.Services
 {
     public class MedicineService : IMedicineService
     {
-        private readonly MedicineRepository _medicineRepository;
+        private readonly IMedicineRepository _medicineRepository;
 
-        public MedicineService(MedicineRepository medicineRepository)
+        public MedicineService(IMedicineRepository medicineRepository)
         {
             _medicineRepository = medicineRepository;
         }

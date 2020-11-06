@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HMB_Client.Domain
+﻿namespace HMB_DA.Domain
 {
     public class Entity
     {

@@ -1,20 +1,12 @@
-﻿using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using HMB_Client.Helpers;
-using NHibernate;
-using Unity;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Unity;
 using HMB_Client.Services;
-using HMB_Client.Repositories;
 using HMB_Client.Interfaces;
+using HMS_DA;
 
 namespace HMB_Client
 {
     public class Bootstraper
     {
-        private const string DatabasePath = "C:\\My\\HomeMedicineBalancer\\Database\\TestDatabase.db";
         public IUnityContainer UnityContainer { get; set; }
 
         public Bootstraper()
@@ -27,25 +19,12 @@ namespace HMB_Client
             UnityContainer = new UnityContainer();
             RegisterDependencies();
             container = UnityContainer;
+            new DataAccessModule().Run(container);
         }
 
-        private static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently.Configure()
-                .Database(
-                SQLiteConfiguration.Standard
-                .UsingFile(DatabasePath)
-                )
-                //TODO: Configure mapping from approp proj
-                .Mappings(m =>
-                            m.FluentMappings.AddFromAssemblyOf<Bootstraper>())
-                .BuildSessionFactory();
-        }
 
         private void RegisterDependencies()
         {
-            UnityContainer.RegisterInstance<ISessionFactory>(CreateSessionFactory());
-            UnityContainer.RegisterType<IMedicineRepository, MedicineRepository>();
             UnityContainer.RegisterType<MainViewModel>();
             UnityContainer.RegisterType<IMedicineService, MedicineService>();
 

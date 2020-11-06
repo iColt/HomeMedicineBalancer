@@ -1,14 +1,16 @@
 ﻿using NHibernate;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace HMB_Client.Interfaces
+namespace HMB_DA.Interfaces
 {
 	public interface IRepository<T> where T : class
 	{
 		IQueryable<T> CreateQuery(ISession session);
+
+		T GetById(int id);
+
 		T Save(T entity);
+
+		void Delete(T entity);
 	}
 }

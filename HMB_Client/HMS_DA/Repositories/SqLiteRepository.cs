@@ -1,12 +1,8 @@
-﻿using HMB_Client.Helpers;
-using HMB_Client.Interfaces;
+﻿using HMB_DA.Interfaces;
 using NHibernate;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace HMB_Client.Core
+namespace HMB_DA.Repositories
 {
     public class SqLiteRepository<T> : IRepository<T> where T : class
     {

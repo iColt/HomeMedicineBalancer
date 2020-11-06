@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using HMB_Client.Domain;
+using HMB_DA.Domain;
 
-namespace HMB_Client.Mappers
+namespace HMB_DA.Mappers
 {
 	public sealed class MedicineMap : SubclassMap<Medicine>
 	{

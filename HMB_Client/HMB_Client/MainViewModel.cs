@@ -2,15 +2,8 @@
 using HMB_Client.Interfaces;
 using HMB_Client.Models;
 using HMB_Client.Presentation;
-using HMB_Client.Repositories;
-using HMB_Client.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Unity;
 
 namespace HMB_Client
 {

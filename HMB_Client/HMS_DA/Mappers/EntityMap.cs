@@ -1,10 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using HMB_Client.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using HMB_DA.Domain;
 
-namespace HMB_Client.Mappers
+namespace HMB_DA.Mappers
 {
 	public sealed class EntityMap : SubclassMap<Entity>
 	{

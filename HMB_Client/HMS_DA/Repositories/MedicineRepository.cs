@@ -1,15 +1,10 @@
-﻿using HMB_Client.Core;
-using HMB_Client.Domain;
-using HMB_Client.Helpers;
-using HMB_Client.Interfaces;
+﻿using HMB_DA.Domain;
+using HMB_DA.Interfaces;
 using NHibernate;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Domain = HMB_Client.Domain;
 
-namespace HMB_Client.Repositories
+namespace HMB_DA.Repositories
 {
     public class MedicineRepository : SqLiteRepository<Medicine>, IMedicineRepository
     {

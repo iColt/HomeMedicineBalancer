@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMB_Client", "HMB_Client\HMB_Client.csproj", "{AE2B9334-2D44-4C67-8A3E-54FE9DCE6BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HMB_Client", "HMB_Client\HMB_Client.csproj", "{AE2B9334-2D44-4C67-8A3E-54FE9DCE6BC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS_DA", "HMS_DA\HMS_DA.csproj", "{D9498B20-E3DA-474B-ABFF-A3AD35F1EA6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS_Core", "HMS_Core\HMS_Core.csproj", "{CE32A2BE-FA05-4A21-944F-B0BAD70C52BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{AE2B9334-2D44-4C67-8A3E-54FE9DCE6BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE2B9334-2D44-4C67-8A3E-54FE9DCE6BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE2B9334-2D44-4C67-8A3E-54FE9DCE6BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9498B20-E3DA-474B-ABFF-A3AD35F1EA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9498B20-E3DA-474B-ABFF-A3AD35F1EA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9498B20-E3DA-474B-ABFF-A3AD35F1EA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9498B20-E3DA-474B-ABFF-A3AD35F1EA6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE32A2BE-FA05-4A21-944F-B0BAD70C52BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE32A2BE-FA05-4A21-944F-B0BAD70C52BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE32A2BE-FA05-4A21-944F-B0BAD70C52BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE32A2BE-FA05-4A21-944F-B0BAD70C52BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
