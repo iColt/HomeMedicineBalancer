@@ -12,5 +12,8 @@ namespace HMB_DA.Interfaces
 		T Save(T entity);
 
 		void Delete(T entity);
+
+		//Add GetAll here
+		//IEnumerable<T> GetAll();
 	}
 }

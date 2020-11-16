@@ -10,8 +10,11 @@ namespace HMB_Client
     public class MainViewModel : ViewModelBase
     {
         private readonly IMedicineService medicineService;
+        
+        private readonly ICacheService cacheService;
         private Medicine selectedMedicine;
         private ObservableCollection<Medicine> medicines;
+        private ObservableCollection<MedicineType> medicineTypes;
 
         public ObservableCollection<Medicine> Medicines
         {
@@ -20,6 +23,16 @@ namespace HMB_Client
             {
                 medicines = value;
                 OnPropertyChanged(nameof(Medicines));
+            }
+        }
+
+        public ObservableCollection<MedicineType> MedicineTypes
+        {
+            get { return medicineTypes; }
+            set
+            {
+                medicineTypes = value;
+                OnPropertyChanged(nameof(MedicineTypes));
             }
         }
 
@@ -32,6 +45,27 @@ namespace HMB_Client
                 OnPropertyChanged(nameof(SelectedMedicine));
                 OnPropertyChanged(nameof(Name));
                 OnPropertyChanged(nameof(Code));
+            }
+        }
+
+        public MedicineType MedicineType
+        {
+            get 
+            {
+                var type = selectedMedicine?.MedicineType;
+                if (type != null) { 
+                    return type;
+                }
+                else
+                {
+                   return cacheService.GetMedicineType(selectedMedicine.MedicineTypeId);
+                }
+            }
+            set
+            {
+                selectedMedicine.MedicineType = value;
+                selectedMedicine.MedicineTypeId = value.Id;
+                OnPropertyChanged(nameof(MedicineType));
             }
         }
 
@@ -61,20 +95,21 @@ namespace HMB_Client
 
         public RelayCommand DeleteCommand { get; set; }
 
-        public MainViewModel(IMedicineService medicineService)
+        public MainViewModel(IMedicineService medicineService, ICacheService cacheService)
         {
             AddNewCommand = new RelayCommand(x => AddNewMedicine(), y => CanAdd());
             SaveCommand = new RelayCommand(x => SaveMedicine(), y => CanSave());
             DeleteCommand = new RelayCommand(x => Delete());
             AddNewMedicine();
             this.medicineService = medicineService;
-            Medicines = new ObservableCollection<Medicine>(this.medicineService.GetListMedicine());
+            Medicines = new ObservableCollection<Medicine>(this.medicineService.GetList());
+            MedicineTypes = new ObservableCollection<MedicineType>(cacheService.MedicineTypes);
+            this.cacheService = cacheService;
         }
 
         public void AddNewMedicine()
         {
-            //TODO: change to combobox of MedType
-            SelectedMedicine = new Medicine() { MedicineTypeId = 1, CreatedDate  = DateTime.Today };
+            SelectedMedicine = new Medicine() { CreatedDate  = DateTime.Today };
         }
 
         public void SaveMedicine()
@@ -98,7 +133,7 @@ namespace HMB_Client
 
         public bool CanSave()
         {
-            return true; 
+            return MedicineType != null; 
         }
     }
 }

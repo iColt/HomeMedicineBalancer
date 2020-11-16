@@ -16,7 +16,7 @@ namespace HMB_Client.Services
             _medicineRepository = medicineRepository;
         }
 
-        public IList<Medicine> GetListMedicine()
+        public IList<Medicine> GetList()
         {
             var objs = _medicineRepository.GetAll();
 

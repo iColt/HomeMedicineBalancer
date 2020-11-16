@@ -18,5 +18,7 @@ namespace HMB_Client.Models
 
         public DateTime CreatedDate { get; set; }
 
+        public MedicineType MedicineType { get; set; }
+
     }
 }

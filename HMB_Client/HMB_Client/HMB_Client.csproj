@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Recources/Icons8-Ios7-Healthcare-Pill.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

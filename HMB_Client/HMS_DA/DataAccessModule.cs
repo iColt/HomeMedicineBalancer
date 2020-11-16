@@ -1,7 +1,8 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using HMB_DA.Interfaces;
-using HMB_DA.Repositories;
+using HMS_DA.Interfaces;
+using HMS_DA.Repositories;
 using NHibernate;
 using Unity;
 
@@ -21,6 +22,7 @@ namespace HMS_DA
         {
             container.RegisterInstance<ISessionFactory>(CreateSessionFactory());
             container.RegisterType<IMedicineRepository, MedicineRepository>();
+            container.RegisterType<IMedicineTypeRepository, MedicineTypeRepository>();
         }
 
 

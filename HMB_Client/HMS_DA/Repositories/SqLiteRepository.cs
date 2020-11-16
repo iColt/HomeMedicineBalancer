@@ -2,7 +2,7 @@
 using NHibernate;
 using System.Linq;
 
-namespace HMB_DA.Repositories
+namespace HMS_DA.Repositories
 {
     public class SqLiteRepository<T> : IRepository<T> where T : class
     {
