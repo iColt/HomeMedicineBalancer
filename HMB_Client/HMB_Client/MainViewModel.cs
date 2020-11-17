@@ -43,6 +43,7 @@ namespace HMB_Client
             {
                 selectedMedicine = value;
                 OnPropertyChanged(nameof(SelectedMedicine));
+                OnPropertyChanged(nameof(MedicineType));
                 OnPropertyChanged(nameof(Name));
                 OnPropertyChanged(nameof(Code));
             }
@@ -99,7 +100,7 @@ namespace HMB_Client
         {
             AddNewCommand = new RelayCommand(x => AddNewMedicine(), y => CanAdd());
             SaveCommand = new RelayCommand(x => SaveMedicine(), y => CanSave());
-            DeleteCommand = new RelayCommand(x => Delete());
+            DeleteCommand = new RelayCommand(x => Delete(x));
             AddNewMedicine();
             this.medicineService = medicineService;
             Medicines = new ObservableCollection<Medicine>(this.medicineService.GetList());
@@ -118,10 +119,13 @@ namespace HMB_Client
             AddNewMedicine();
         }
 
-        public void Delete()
+        public void Delete(object med)
         {
-            medicineService.Delete(SelectedMedicine);
-            Medicines.Remove(SelectedMedicine);
+            var medicine = med as Medicine;
+            if(medicine == null)
+                return;
+            medicineService.Delete(medicine);
+            Medicines.Remove(medicine);
             AddNewMedicine();
         }
 

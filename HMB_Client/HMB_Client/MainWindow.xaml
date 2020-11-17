@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -28,25 +28,37 @@
                       DisplayMemberPath="Name"/>
         </StackPanel>
 
-        <Button Grid.Column="0" Grid.Row="1" Command="{Binding AddNewCommand}">Add New Entity</Button>
-        <Button Grid.Column="0" Grid.Row="2" Command="{Binding SaveCommand}">Save Entity</Button>
+        <Button Grid.Column="0" Grid.Row="1" Command="{Binding AddNewCommand}" Margin="10">Add New Entity</Button>
+        <Button Grid.Column="0" Grid.Row="2" Command="{Binding SaveCommand}" Margin="10">Save Entity</Button>
         
         <ListBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
                  ItemsSource="{Binding Medicines, UpdateSourceTrigger=PropertyChanged}"
-                 SelectedItem="{Binding SelectedMedicine, Mode=TwoWay}">
+                 SelectedItem="{Binding SelectedMedicine, Mode=TwoWay}"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Margin="5" Grid.Column="0" Width="400">
-                            <TextBlock FontSize="18" Text="{Binding Path=Id}" />
-                            <TextBlock Text="{Binding Path=Code}" />
-                            <TextBlock Text="{Binding Path=Name}" />
-                        </StackPanel>
-                        <Button Grid.Column="1" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.DeleteCommand}" Width="50" HorizontalAlignment="Right">X</Button>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="18" Text="{Binding Path=Id}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=Code}" />
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=Name}" />
+                        <Button Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" MinWidth="50"
+                                Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.DeleteCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext}"
+                                HorizontalAlignment="Right">X</Button>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
