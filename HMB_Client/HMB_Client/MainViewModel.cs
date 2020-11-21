@@ -1,8 +1,8 @@
-﻿using HMB_Client.Core;
+﻿using System;
+using HMB_Client.Core;
 using HMB_Client.Interfaces;
 using HMB_Client.Models;
 using HMB_Client.Presentation;
-using System;
 using System.Collections.ObjectModel;
 
 namespace HMB_Client
@@ -15,6 +15,8 @@ namespace HMB_Client
         private Medicine selectedMedicine;
         private ObservableCollection<Medicine> medicines;
         private ObservableCollection<MedicineType> medicineTypes;
+
+        #region Properties
 
         public ObservableCollection<Medicine> Medicines
         {
@@ -49,6 +51,7 @@ namespace HMB_Client
             }
         }
 
+        //TODO: refactor this?
         public MedicineType MedicineType
         {
             get 
@@ -90,27 +93,45 @@ namespace HMB_Client
             }
         }
 
+        #endregion
+
+        #region Commands
+
         public RelayCommand AddNewCommand { get; set; }
 
         public RelayCommand SaveCommand { get; set; }
 
         public RelayCommand DeleteCommand { get; set; }
 
+        #endregion
+
+        #region ctor
+
         public MainViewModel(IMedicineService medicineService, ICacheService cacheService)
         {
             AddNewCommand = new RelayCommand(x => AddNewMedicine(), y => CanAdd());
             SaveCommand = new RelayCommand(x => SaveMedicine(), y => CanSave());
             DeleteCommand = new RelayCommand(x => Delete(x));
-            AddNewMedicine();
             this.medicineService = medicineService;
-            Medicines = new ObservableCollection<Medicine>(this.medicineService.GetList());
-            MedicineTypes = new ObservableCollection<MedicineType>(cacheService.MedicineTypes);
             this.cacheService = cacheService;
         }
 
-        public void AddNewMedicine()
+        public void Initialize()
         {
-            SelectedMedicine = new Medicine() { CreatedDate  = DateTime.Today };
+            Medicines = new ObservableCollection<Medicine>(this.medicineService.GetList());
+            MedicineTypes = new ObservableCollection<MedicineType>(cacheService.MedicineTypes);
+            AddNewMedicine();
+        }
+
+        #endregion
+
+        #region Command handlers
+
+        public bool CanSave()
+        {
+            return MedicineType != null
+                && Name != null
+                && Code != null;
         }
 
         public void SaveMedicine()
@@ -135,9 +156,17 @@ namespace HMB_Client
             return true;
         }
 
-        public bool CanSave()
+        public void AddNewMedicine()
         {
-            return MedicineType != null; 
+            SelectedMedicine = new Medicine() { CreatedDate = DateTime.Today };
         }
+
+        #endregion
+
+        #region Methods
+
+
+        #endregion
+
     }
 }

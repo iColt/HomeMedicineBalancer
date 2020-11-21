@@ -10,7 +10,9 @@ namespace HMB_Client
         {
             InitializeComponent();
             new Bootstraper().Run(out var unityContainer);
-            DataContext = unityContainer.Resolve<MainViewModel>();
+            var vm = unityContainer.Resolve<MainViewModel>();
+            vm.Initialize();
+            DataContext = vm;
         }
 
   
