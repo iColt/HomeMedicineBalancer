@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HMS_DA", "HMS_DA\HMS_DA.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HMS_Core", "HMS_Core\HMS_Core.csproj", "{CE32A2BE-FA05-4A21-944F-B0BAD70C52BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMB_Client_Tests", "HMB_Client_Tests\HMB_Client_Tests.csproj", "{F18CA9AD-1E83-4DC7-A114-C099EEE6E7A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HMB_Client_Tests", "HMB_Client_Tests\HMB_Client_Tests.csproj", "{F18CA9AD-1E83-4DC7-A114-C099EEE6E7A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS_DA_Tests", "HMS_DA_Tests\HMS_DA_Tests.csproj", "{17D8BBB6-D0D5-46B6-BB17-C75757D5E389}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F18CA9AD-1E83-4DC7-A114-C099EEE6E7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F18CA9AD-1E83-4DC7-A114-C099EEE6E7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F18CA9AD-1E83-4DC7-A114-C099EEE6E7A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D8BBB6-D0D5-46B6-BB17-C75757D5E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D8BBB6-D0D5-46B6-BB17-C75757D5E389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D8BBB6-D0D5-46B6-BB17-C75757D5E389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D8BBB6-D0D5-46B6-BB17-C75757D5E389}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

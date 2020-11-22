@@ -2,30 +2,25 @@
 using HMB_Client.Models;
 using System.Collections.Generic;
 using HMS_DA.Interfaces;
-using System.Linq;
+using AutoMapper;
 
 namespace HMB_Client.Services
 {
     public class MedicineTypeService : IMedicineTypeService
     {
         private readonly IMedicineTypeRepository _medicineTypeRepository;
+        private readonly IMapper _mapper;
 
-        public MedicineTypeService(IMedicineTypeRepository medicineTypeRepository)
+        public MedicineTypeService(IMedicineTypeRepository medicineTypeRepository, IMapper mapper)
         {
             _medicineTypeRepository = medicineTypeRepository;
+            _mapper = mapper;
         }
 
         public IList<MedicineType> GetList()
         {
             var objs = _medicineTypeRepository.GetAll();
-
-            return objs.Select(x =>
-                new MedicineType()
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                }
-                ).ToList();
+            return _mapper.Map<IList<MedicineType>>(objs);
         }
     }
 }

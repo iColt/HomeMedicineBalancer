@@ -4,13 +4,12 @@ using HMB_Client.Interfaces;
 using HMB_Client.Models;
 using HMB_Client.Presentation;
 using System.Collections.ObjectModel;
+using System.Linq;
 
-namespace HMB_Client
-{
-    public class MainViewModel : ViewModelBase
-    {
+namespace HMB_Client {
+    public class MainViewModel : ViewModelBase {
         private readonly IMedicineService medicineService;
-        
+
         private readonly ICacheService cacheService;
         private Medicine selectedMedicine;
         private ObservableCollection<Medicine> medicines;
@@ -18,31 +17,25 @@ namespace HMB_Client
 
         #region Properties
 
-        public ObservableCollection<Medicine> Medicines
-        {
+        public ObservableCollection<Medicine> Medicines {
             get { return medicines; }
-            set
-            {
+            set {
                 medicines = value;
                 OnPropertyChanged(nameof(Medicines));
             }
         }
 
-        public ObservableCollection<MedicineType> MedicineTypes
-        {
+        public ObservableCollection<MedicineType> MedicineTypes {
             get { return medicineTypes; }
-            set
-            {
+            set {
                 medicineTypes = value;
                 OnPropertyChanged(nameof(MedicineTypes));
             }
         }
 
-        public Medicine SelectedMedicine
-        {
+        public Medicine SelectedMedicine {
             get { return selectedMedicine; }
-            set
-            {
+            set {
                 selectedMedicine = value;
                 OnPropertyChanged(nameof(SelectedMedicine));
                 OnPropertyChanged(nameof(MedicineType));
@@ -52,42 +45,33 @@ namespace HMB_Client
         }
 
         //TODO: refactor this?
-        public MedicineType MedicineType
-        {
-            get 
-            {
+        public MedicineType MedicineType {
+            get {
                 var type = selectedMedicine?.MedicineType;
-                if (type != null) { 
+                if (type != null) {
                     return type;
-                }
-                else
-                {
-                   return cacheService.GetMedicineType(selectedMedicine.MedicineTypeId);
+                } else {
+                    return cacheService.GetMedicineType(selectedMedicine.MedicineTypeId);
                 }
             }
-            set
-            {
+            set {
                 selectedMedicine.MedicineType = value;
                 selectedMedicine.MedicineTypeId = value.Id;
                 OnPropertyChanged(nameof(MedicineType));
             }
         }
 
-        public string Name
-        {
+        public string Name {
             get { return selectedMedicine?.Name; }
-            set
-            {
+            set {
                 selectedMedicine.Name = value;
                 OnPropertyChanged(nameof(Name));
             }
         }
 
-        public string Code
-        {
+        public string Code {
             get { return selectedMedicine?.Code; }
-            set
-            {
+            set {
                 selectedMedicine.Code = value;
                 OnPropertyChanged(nameof(Code));
             }
@@ -107,8 +91,7 @@ namespace HMB_Client
 
         #region ctor
 
-        public MainViewModel(IMedicineService medicineService, ICacheService cacheService)
-        {
+        public MainViewModel(IMedicineService medicineService, ICacheService cacheService) {
             AddNewCommand = new RelayCommand(x => AddNewMedicine(), y => CanAdd());
             SaveCommand = new RelayCommand(x => SaveMedicine(), y => CanSave());
             DeleteCommand = new RelayCommand(x => Delete(x));
@@ -116,8 +99,7 @@ namespace HMB_Client
             this.cacheService = cacheService;
         }
 
-        public void Initialize()
-        {
+        public void Initialize() {
             Medicines = new ObservableCollection<Medicine>(this.medicineService.GetList());
             MedicineTypes = new ObservableCollection<MedicineType>(cacheService.MedicineTypes);
             AddNewMedicine();
@@ -127,23 +109,26 @@ namespace HMB_Client
 
         #region Command handlers
 
-        public bool CanSave()
-        {
+        public bool CanSave() {
             return MedicineType != null
                 && Name != null
                 && Code != null;
         }
 
-        public void SaveMedicine()
-        {
-            Medicines.Add(medicineService.Save(SelectedMedicine));
+        public void SaveMedicine() {
+            var obj = medicineService.Save(SelectedMedicine);
+            if (SelectedMedicine.Id == 0) {
+                Medicines.Add(obj);
+            } else {
+                Medicines.Remove(Medicines.First(x => x.Code == obj.Code));
+                Medicines.Add(obj);
+            }
             AddNewMedicine();
         }
 
-        public void Delete(object med)
-        {
+        public void Delete(object med) {
             var medicine = med as Medicine;
-            if(medicine == null)
+            if (medicine == null)
                 return;
             medicineService.Delete(medicine);
             Medicines.Remove(medicine);
@@ -151,13 +136,11 @@ namespace HMB_Client
         }
 
         //TODO: We need in base class RaiseCanExecute
-        public bool CanAdd()
-        {
+        public bool CanAdd() {
             return true;
         }
 
-        public void AddNewMedicine()
-        {
+        public void AddNewMedicine() {
             SelectedMedicine = new Medicine() { CreatedDate = DateTime.Today };
         }
 

@@ -2,30 +2,26 @@
 using HMB_Client.Models;
 using Domain = HMB_DA.Domain;
 using System.Collections.Generic;
-using System.Linq;
 using HMB_DA.Interfaces;
+using AutoMapper;
 
 namespace HMB_Client.Services
 {
     public class MedicineService : IMedicineService
     {
         private readonly IMedicineRepository _medicineRepository;
+        private readonly IMapper _mapper;
 
-        public MedicineService(IMedicineRepository medicineRepository)
+        public MedicineService(IMedicineRepository medicineRepository, IMapper mapper)
         {
             _medicineRepository = medicineRepository;
+            _mapper = mapper;
         }
 
         public IList<Medicine> GetList()
         {
             var objs = _medicineRepository.GetAll();
-
-            return objs.Select(x =>
-                new Medicine()
-                { Id = x.Id, Code = x.Code, Name = x.Name,
-                ValidTo = x.ValidTo, MedicineTypeId = x.MedicineTypeId,
-                CreatedDate = x.CreatedDate }
-                ).ToList();
+            return _mapper.Map<IList<Medicine>>(objs);
         }
 
         public Medicine Save(Medicine medicine)
@@ -35,32 +31,8 @@ namespace HMB_Client.Services
             {
                 obj = _medicineRepository.GetById(medicine.Id);
             }
-            //TODO: add mapper here
-            FillObject(obj, medicine);
-            return Extract(_medicineRepository.Save(obj));
-        }
-
-        public void FillObject(Domain.Medicine obj, Medicine medicine)
-        {
-            obj.Code = medicine.Code;
-            obj.Name = medicine.Name;
-            obj.MedicineTypeId = medicine.MedicineTypeId;
-            obj.ValidTo = medicine.ValidTo;
-            obj.CreatedDate = medicine.CreatedDate;
-        }
-
-        public Medicine Extract(Domain.Medicine obj)
-        {
-            return new Medicine()
-            {
-                Id = obj.Id,
-                Code = obj.Code,
-                Name = obj.Name,
-                ValidTo = obj.ValidTo,
-                MedicineTypeId = obj.MedicineTypeId,
-                CreatedDate = obj.CreatedDate
-            };
-
+            _mapper.Map(medicine, obj);
+            return _mapper.Map<Medicine>(_medicineRepository.Save(obj));
         }
 
         public void Delete(Medicine medicine)
@@ -70,8 +42,7 @@ namespace HMB_Client.Services
             {
                 obj = _medicineRepository.GetById(medicine.Id);
             }
-            //TODO: add mapper here
-            FillObject(obj, medicine);
+            _mapper.Map(medicine, obj);
             _medicineRepository.Delete(obj);
         }
     }

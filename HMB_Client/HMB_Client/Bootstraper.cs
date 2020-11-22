@@ -3,6 +3,7 @@ using HMB_Client.Services;
 using HMB_Client.Interfaces;
 using HMS_DA;
 using Unity.Lifetime;
+using AutoMapper;
 
 namespace HMB_Client
 {
@@ -19,6 +20,7 @@ namespace HMB_Client
         {
             UnityContainer = new UnityContainer();
             RegisterDependencies();
+            RegisterMappings();
             container = UnityContainer;
             new DataAccessModule().Run(container);
             //TODO: When some framework will be added, we need to move it somewhere else
@@ -38,6 +40,14 @@ namespace HMB_Client
             UnityContainer.RegisterType<IMedicineService, MedicineService>();
             UnityContainer.RegisterType<IMedicineTypeService, MedicineTypeService>();
 
+        }
+
+        private void RegisterMappings()
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.AddMaps(nameof(HMB_Client));
+            });
+            UnityContainer.RegisterInstance<IMapper>(config.CreateMapper());
         }
     }
 }
