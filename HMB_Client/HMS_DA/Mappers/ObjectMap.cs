@@ -3,7 +3,7 @@ using Domain = HMB_DA.Domain;
 
 namespace HMB_DA.Mappers
 {
-	public sealed class ObjectMap : ClassMap<Domain.Object>
+	public sealed class ObjectMap<T> : ClassMap<Domain.Object<T>> where T : Domain.Object<T>
 	{
 		public ObjectMap()
 		{

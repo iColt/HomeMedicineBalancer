@@ -1,6 +1,9 @@
-﻿using FluentNHibernate.Cfg;
+﻿using CommonServiceLocator;
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using HMB_DA.Domain;
 using HMB_DA.Interfaces;
+using HMS_DA.DomainFactories;
 using HMS_DA.Interfaces;
 using HMS_DA.Repositories;
 using NHibernate;
@@ -21,10 +24,13 @@ namespace HMS_DA
         private void RegisterDependencies(IUnityContainer container)
         {
             container.RegisterInstance<ISessionFactory>(CreateSessionFactory());
-            container.RegisterType<IMedicineRepository, MedicineRepository>();
-            container.RegisterType<IMedicineTypeRepository, MedicineTypeRepository>();
+            //container.RegisterType<IMedicineRepository, MedicineRepository>();
+            //container.RegisterType<IMedicineTypeRepository, MedicineTypeRepository>();
+            container.RegisterType<IDomainObjectFactory<Medicine>, MedicineFactory>();
+            container.RegisterType<IDomainObjectFactory<MedicineType>, MedicineTypeFactory>();
         }
 
+       
 
         private static ISessionFactory CreateSessionFactory()
         {

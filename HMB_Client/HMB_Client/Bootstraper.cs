@@ -4,6 +4,8 @@ using HMB_Client.Interfaces;
 using HMS_DA;
 using Unity.Lifetime;
 using AutoMapper;
+using CommonServiceLocator;
+using Unity.ServiceLocation;
 
 namespace HMB_Client
 {
@@ -19,6 +21,7 @@ namespace HMB_Client
         public void Run(out IUnityContainer container)
         {
             UnityContainer = new UnityContainer();
+            RegisterContainer(UnityContainer);
             RegisterDependencies();
             RegisterMappings();
             container = UnityContainer;
@@ -32,6 +35,13 @@ namespace HMB_Client
             var cacheService = UnityContainer.Resolve<ICacheService>();
             cacheService.Load();
         }
+
+        public void RegisterContainer(IUnityContainer container)
+        {
+            var locator = new UnityServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => locator);
+        }
+
 
         private void RegisterDependencies()
         {

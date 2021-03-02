@@ -17,6 +17,7 @@ namespace HMB_Client.Services
             _mapper = mapper;
         }
 
+        //TODO: Medicine type collection
         public IList<MedicineType> GetList()
         {
             var objs = _medicineTypeRepository.GetAll();

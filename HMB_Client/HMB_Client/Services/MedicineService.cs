@@ -18,6 +18,7 @@ namespace HMB_Client.Services
             _mapper = mapper;
         }
 
+        //TODO: Medicine  collection
         public IList<Medicine> GetList()
         {
             var objs = _medicineRepository.GetAll();
@@ -26,24 +27,24 @@ namespace HMB_Client.Services
 
         public Medicine Save(Medicine medicine)
         {
-            var obj = new Domain.Medicine();
+            var obj = Domain.Medicine.New();
             if(medicine.Id != 0)
             {
                 obj = _medicineRepository.GetById(medicine.Id);
             }
             _mapper.Map(medicine, obj);
-            return _mapper.Map<Medicine>(_medicineRepository.Save(obj));
+            return _mapper.Map<Medicine>(obj.Save());
         }
 
         public void Delete(Medicine medicine)
         {
-            var obj = new Domain.Medicine();
+            var obj = Domain.Medicine.New();
             if (medicine.Id != 0)
             {
                 obj = _medicineRepository.GetById(medicine.Id);
             }
             _mapper.Map(medicine, obj);
-            _medicineRepository.Delete(obj);
+            obj.Delete();
         }
     }
 }
