@@ -7,6 +7,7 @@ namespace HMB_DA.Mappers
 	{
 		public ObjectMap()
 		{
+			Not.LazyLoad();
 			Id(x => x.Id).GeneratedBy.Identity();
 			Map(x => x.Code);
 			Map(x => x.Name);

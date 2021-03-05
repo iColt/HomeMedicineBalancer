@@ -9,7 +9,7 @@ using System.Text;
 
 namespace HMS_DA.Core
 {
-    class GenericFactory<T> : ObjectFactory where T : class
+    public class GenericFactory<T> : ObjectFactory where T : class
 	{
 		#region Internal
 
@@ -53,13 +53,13 @@ namespace HMS_DA.Core
 			return concreteFactory;
 		}
 
-		internal object Fetch(ICriteria criteria)
+		internal object Fetch(object criteria)
 		{
 			try
 			{
 				var concreteFactory = GetConcreteFactory();
 
-				var obj = concreteFactory.Fetch(criteria);
+				var obj = concreteFactory.Fetch(criteria as ICriteria);
 
 				if (obj != null)
 				{

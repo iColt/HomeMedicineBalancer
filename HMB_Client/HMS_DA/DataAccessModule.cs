@@ -1,11 +1,9 @@
-﻿using CommonServiceLocator;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using HMB_DA.Domain;
-using HMB_DA.Interfaces;
+using HMS_DA.Domain;
 using HMS_DA.DomainFactories;
 using HMS_DA.Interfaces;
-using HMS_DA.Repositories;
 using NHibernate;
 using Unity;
 
@@ -28,6 +26,9 @@ namespace HMS_DA
             //container.RegisterType<IMedicineTypeRepository, MedicineTypeRepository>();
             container.RegisterType<IDomainObjectFactory<Medicine>, MedicineFactory>();
             container.RegisterType<IDomainObjectFactory<MedicineType>, MedicineTypeFactory>();
+
+            container.RegisterType<IDomainObjectFactory<MedicineCollection>, MedicineCollectionFactory>();
+            container.RegisterType<IDomainObjectFactory<MedicineTypeCollection>, MedicineTypeCollectionFactory>();
         }
 
        

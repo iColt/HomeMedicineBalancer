@@ -7,6 +7,7 @@ namespace HMS_DA.Mappers
 	{
 		public MedicineTypeMap()
 		{
+			Not.LazyLoad();
 			Id(x => x.Id).GeneratedBy.Identity();
 			Map(x => x.Name);
 		}

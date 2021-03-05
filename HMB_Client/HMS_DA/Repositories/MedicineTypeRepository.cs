@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace HMS_DA.Repositories
 {
-    public class MedicineTypeRepository : SqLiteRepository<MedicineType>, IMedicineTypeRepository
+    public class MedicineTypeRepository : SqLiteRepository<MedicineType>
     {
         public MedicineTypeRepository(ISessionFactory sessionFactory) : base(sessionFactory)
         {

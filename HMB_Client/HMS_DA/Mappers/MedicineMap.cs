@@ -7,6 +7,7 @@ namespace HMB_DA.Mappers
 	{
 		public MedicineMap()
 		{
+			Not.LazyLoad();
 			KeyColumn("Id");
 			Map(x => x.MedicineTypeId);
 			Map(x => x.ValidTo);
