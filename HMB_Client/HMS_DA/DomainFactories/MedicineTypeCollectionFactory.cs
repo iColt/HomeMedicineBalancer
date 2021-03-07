@@ -2,11 +2,8 @@
 using HMS_DA.Core;
 using HMS_DA.Criteria;
 using HMS_DA.Domain;
-using NHibernate;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HMS_DA.DomainFactories
 {

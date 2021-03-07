@@ -4,8 +4,6 @@ using Csla.Server;
 using HMS_DA.Interfaces;
 using NHibernate;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HMS_DA.Core
 {

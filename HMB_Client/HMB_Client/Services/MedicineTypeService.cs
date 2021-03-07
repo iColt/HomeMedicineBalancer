@@ -1,7 +1,6 @@
 ﻿using HMB_Client.Interfaces;
 using HMB_Client.Models;
 using System.Collections.Generic;
-using HMS_DA.Interfaces;
 using AutoMapper;
 using HMS_DA.Domain;
 

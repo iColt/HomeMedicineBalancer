@@ -1,5 +1,4 @@
-﻿using Csla;
-using NHibernate;
+﻿using NHibernate;
 
 namespace HMS_DA.Interfaces
 {

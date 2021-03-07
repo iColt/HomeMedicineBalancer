@@ -24,8 +24,6 @@ namespace HMS_DA
         private void RegisterDependencies(IUnityContainer container)
         {
             container.RegisterInstance<ISessionFactory>(CreateSessionFactory());
-            //container.RegisterType<IMedicineRepository, MedicineRepository>();
-            //container.RegisterType<IMedicineTypeRepository, MedicineTypeRepository>();
             container.RegisterType<IDomainObjectFactory<Medicine>, MedicineFactory>();
             container.RegisterType<IDomainObjectFactory<MedicineType>, MedicineTypeFactory>();
 
@@ -43,7 +41,9 @@ namespace HMS_DA
         }
 
 
-
+        //TIP: Why to use approach with manually adding of Map configurations( .Mappings(m => ConfigureMapping(m))) instead of more convinient and simplier:
+        // .Mappings(m => m.FluentMappings.AddFromAssemblyOf<>
+        //Answer: to configure subclass-class mapping(ObjectMap<Medicine>)
         private static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()

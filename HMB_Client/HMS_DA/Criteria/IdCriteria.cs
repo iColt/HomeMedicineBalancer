@@ -1,5 +1,4 @@
-﻿
-namespace HMS_DA.Criteria
+﻿namespace HMS_DA.Criteria
 {
     public class IdCriteria<T>
     {
