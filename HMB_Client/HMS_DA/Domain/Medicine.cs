@@ -1,17 +1,18 @@
 ﻿using System;
 using Csla;
 using HMS_DA.Criteria;
+using HMS_DA.DomainFactories;
 
 namespace HMB_DA.Domain
 {
 	[Serializable]
-	[Csla.Server.ObjectFactory("HMS_DA.Core.GenericFactory`1[[HMB_DA.Domain.Medicine, HMB_DA.Domain]], HMB_DA.Domain")]
+	[Csla.Server.ObjectFactory(typeof(MedicineFactory))]
     public class Medicine : Object<Medicine>
     {
 
 		public static readonly PropertyInfo<DateTime> ValidToProperty = RegisterProperty<DateTime>(new PropertyInfo<DateTime>("ValidTo"));
 
-		public DateTime ValidTo
+		public virtual DateTime ValidTo
 		{
 			get
 			{
@@ -51,6 +52,11 @@ namespace HMB_DA.Domain
 
 
 		#endregion
+
+		public void AsChild()
+		{
+			base.MarkAsChild();
+		}
 
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using CommonServiceLocator;
 using Csla;
 using Csla.Reflection;
+using Csla.Server;
 using HMS_DA.Interfaces;
 using NHibernate;
 using System;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace HMS_DA.Core
 {
-    public abstract class AbstractNHibernateFactory<T> : IDomainObjectFactory<T> where T : BusinessBase<T>
+    public abstract class AbstractNHibernateFactory<T> : ObjectFactory, IDomainObjectFactory<T> where T : BusinessBase<T>
     {
 
         protected static NHibernate.ISession Session
@@ -54,7 +55,7 @@ namespace HMS_DA.Core
             return obj;
         }
 
-        public virtual T Fetch(ICriteria criteria)
+        public virtual T Fetch(Object criteria)
         {
             throw new NotImplementedException("Fetch method is not implemented for " + typeof(T));
         }

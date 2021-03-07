@@ -49,7 +49,7 @@ namespace HMB_DA.Domain
 
 		public static readonly PropertyInfo<DateTime> CreatedDateProperty = RegisterProperty<DateTime>(new PropertyInfo<DateTime>("CreatedDate"));
 
-		public DateTime CreatedDate
+		public virtual DateTime CreatedDate
 		{
 			get
 			{

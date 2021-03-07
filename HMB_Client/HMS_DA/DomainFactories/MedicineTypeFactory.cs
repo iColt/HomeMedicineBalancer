@@ -10,7 +10,7 @@ namespace HMS_DA.DomainFactories
 {
     public class MedicineTypeFactory : AbstractNHibernateFactory<MedicineType>
     {
-        public override MedicineType Fetch(ICriteria criteria)
+        public override MedicineType Fetch(object criteria)
         {
             var idCrit = (IdCriteria<int>)criteria;
             return Session.Get<MedicineType>(idCrit.Value);

@@ -1,10 +1,11 @@
 ﻿using Csla;
+using HMS_DA.DomainFactories;
 using System;
 
 namespace HMB_DA.Domain
 {
     [Serializable]
-    [Csla.Server.ObjectFactory("HMS_DA.Core.GenericFactory`1[[HMB_DA.Domain.MedicineType, HMB_DA.Domain]], HMB_DA.Domain")]
+    [Csla.Server.ObjectFactory(typeof(MedicineTypeFactory))]
     public class MedicineType : BusinessBase<MedicineType>
     {
 
@@ -34,7 +35,10 @@ namespace HMB_DA.Domain
 			}
 		}
 
-	
+		public void AsChild()
+        {
+			base.MarkAsChild();
+        }
 
 	}
 }

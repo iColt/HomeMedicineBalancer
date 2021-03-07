@@ -1,6 +1,7 @@
 ﻿using Csla;
 using HMB_DA.Domain;
 using HMS_DA.Criteria;
+using HMS_DA.DomainFactories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Text;
 namespace HMS_DA.Domain
 {
     [Serializable]
-    [Csla.Server.ObjectFactory("HMS_DA.Core.GenericFactory`1[[HMB_DA.Domain.MedicineCollection, HMB_DA.Domain]], HMB_DA.Domain")]
+    [Csla.Server.ObjectFactory(typeof(MedicineCollectionFactory))]
     public class MedicineCollection : BusinessListBase<MedicineCollection, Medicine>
     {
         public MedicineCollection() { }
@@ -17,6 +18,12 @@ namespace HMS_DA.Domain
         {
             return DataPortal.Fetch<MedicineCollection>(new CollectionByIdCriteria<IEnumerable<int>, int>(Ids));
         }
+
+        public static MedicineCollection GetAll()
+        {
+            return DataPortal.Fetch<MedicineCollection>(new object());
+        }
+
 
         internal static MedicineCollection New()
         {

@@ -12,18 +12,23 @@ namespace HMS_DA.DomainFactories
 {
     public class MedicineCollectionFactory : AbstractNHibernateCollectionFactory<MedicineCollection>
     {
-        public override MedicineCollection Fetch(ICriteria criteria)
+        public override MedicineCollection Fetch(object criteria)
         {
             var result = MedicineCollection.New();
             var nHibernateCriteria = Session.CreateCriteria<Medicine>();
-            var idCrit = (CollectionByIdCriteria<IEnumerable<int>, int>)criteria;
-
-            if (idCrit != null)
+            if (criteria is CollectionByIdCriteria<IEnumerable<int>, int>)
             {
-                nHibernateCriteria.Add(NHibernate.Criterion.Expression.InG<int>("Id", idCrit.Value.ToList()));
+                var idCrit = (CollectionByIdCriteria<IEnumerable<int>, int>)criteria;
+
+                if (idCrit != null)
+                {
+                    nHibernateCriteria.Add(NHibernate.Criterion.Expression.InG<int>("Id", idCrit.Value.ToList()));
+                }
             }
-            result.AddRange(nHibernateCriteria
-                .List<Medicine>());
+
+            var queryResult = Session.Query<Medicine>().ToList();
+            queryResult.ForEach(x => x.AsChild());
+            result.AddRange(queryResult);
             return result;
         }
     }

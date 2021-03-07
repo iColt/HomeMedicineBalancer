@@ -1,6 +1,7 @@
 ﻿using Csla;
 using HMB_DA.Domain;
 using HMS_DA.Criteria;
+using HMS_DA.DomainFactories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Text;
 namespace HMS_DA.Domain
 {
     [Serializable]
-    [Csla.Server.ObjectFactory("HMS_DA.Core.GenericFactory`1[[HMB_DA.Domain.MedicineTypeCollection, HMB_DA]], HMB_DA")]
+    [Csla.Server.ObjectFactory(typeof(MedicineTypeCollectionFactory))]
     public class MedicineTypeCollection : BusinessListBase<MedicineTypeCollection, MedicineType>
     {
 

@@ -20,7 +20,7 @@ namespace HMB_Client.Services
         //TODO: Medicine  collection
         public IList<Medicine> GetList()
         {
-            var objs = MedicineCollection.GetByIds(new List<int>());
+            var objs = MedicineCollection.GetByIds(new List<int> {1 });
             return _mapper.Map<IList<Medicine>>(objs);
         }
 

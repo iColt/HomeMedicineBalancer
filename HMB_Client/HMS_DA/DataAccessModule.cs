@@ -1,9 +1,11 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using HMB_DA.Domain;
+using HMB_DA.Mappers;
 using HMS_DA.Domain;
 using HMS_DA.DomainFactories;
 using HMS_DA.Interfaces;
+using HMS_DA.Mappers;
 using NHibernate;
 using Unity;
 
@@ -31,7 +33,16 @@ namespace HMS_DA
             container.RegisterType<IDomainObjectFactory<MedicineTypeCollection>, MedicineTypeCollectionFactory>();
         }
 
-       
+        private static void ConfigureMapping(MappingConfiguration configuration)
+        {
+
+            configuration.FluentMappings.Add(typeof(MedicineTypeMap));
+            configuration.FluentMappings.Add(typeof(MedicineMap));
+            configuration.FluentMappings.Add(typeof(EntityMap));
+            configuration.FluentMappings.Add(typeof(ObjectMap<Medicine>));
+        }
+
+
 
         private static ISessionFactory CreateSessionFactory()
         {
@@ -40,8 +51,7 @@ namespace HMS_DA
                 SQLiteConfiguration.Standard
                 .UsingFile(DatabasePath)
                 )
-                .Mappings(m =>
-                            m.FluentMappings.AddFromAssemblyOf<DataAccessModule>())
+                .Mappings(m => ConfigureMapping(m))
                 .BuildSessionFactory();
         }
     }
