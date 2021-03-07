@@ -47,11 +47,11 @@ namespace HMB_Client {
         //TODO: refactor this?
         public MedicineType MedicineType {
             get {
-                var type = selectedMedicine?.MedicineType;
+                var type = selectedMedicine?.MedicineTypeId;
                 if (type != null) {
-                    return type;
-                } else {
                     return cacheService.GetMedicineType(selectedMedicine.MedicineTypeId);
+                } else {
+                    return cacheService.MedicineTypes.FirstOrDefault();
                 }
             }
             set {

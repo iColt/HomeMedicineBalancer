@@ -14,7 +14,7 @@ namespace HMS_DA
     public class DataAccessModule
     {
         //TODO: config service(low priority)
-        private const string DatabasePath = "C:\\My\\HomeMedicineBalancer\\Database\\TestDatabase.db";
+        private const string DatabasePath = "..\\..\\..\\..\\..\\Database\\TestDatabase.db";
 
         public void Run(IUnityContainer container)
         {

@@ -19,16 +19,18 @@ namespace HMB_Client.Services
         //TODO: Medicine  collection
         public IList<Medicine> GetList()
         {
-            var objs = MedicineCollection.GetByIds(new List<int> {1 });
+            var objs = MedicineCollection.GetAll();
             return _mapper.Map<IList<Medicine>>(objs);
         }
 
         public Medicine Save(Medicine medicine)
         {
-            var obj = Domain.Medicine.New();
-            if(medicine.Id != 0)
-            {
+            Domain.Medicine obj;
+            if(medicine.Id != 0) {
                 obj = Domain.Medicine.Get(medicine.Id);
+            }
+            else {
+                obj = Domain.Medicine.New();
             }
             _mapper.Map(medicine, obj);
             return _mapper.Map<Medicine>(obj.Save());
@@ -36,10 +38,14 @@ namespace HMB_Client.Services
 
         public void Delete(Medicine medicine)
         {
-            var obj = Domain.Medicine.New();
+            Domain.Medicine obj;
             if (medicine.Id != 0)
             {
                 obj = Domain.Medicine.Get(medicine.Id);
+            }
+            else
+            {
+                obj = Domain.Medicine.New();
             }
             _mapper.Map(medicine, obj);
             obj.Delete();

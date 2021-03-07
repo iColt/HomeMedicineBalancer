@@ -61,5 +61,10 @@ namespace HMB_DA.Domain
 			}
 		}
 
+		public void MakeOld()
+        {
+			MarkOld();
+        }
+
 	}
 }

@@ -31,13 +31,11 @@ namespace HMS_DA.Core
 
         public void Delete(T obj)
         {
+            var session = Session;
             Session.Delete(obj);
-        }
-
-        public void Delete(ICriteria criteria)
-        {
-            Session.Flush();
-            Delete(Fetch(criteria));
+            //TIP: why we flush session?
+            //Deletion doesn't work
+            session.Flush();
         }
 
         public T Update(T obj)
@@ -48,7 +46,11 @@ namespace HMS_DA.Core
             }
             else
             {
-                Session.Update(obj);
+                var session = Session;
+                session.Update(obj);
+                MarkOld(obj);
+                //TIP: why we flush session?
+                session.Flush();
             }
             return obj;
         }

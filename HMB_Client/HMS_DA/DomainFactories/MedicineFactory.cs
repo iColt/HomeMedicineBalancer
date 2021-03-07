@@ -10,7 +10,9 @@ namespace HMS_DA.DomainFactories
         public override Medicine Fetch(object criteria)
         {
             var idCrit = (IdCriteria<int>)criteria;
-            return Session.Get<Medicine>(idCrit.Value);
+            var obj = Session.Get<Medicine>(idCrit.Value);
+            obj.MakeOld();
+            return obj;
         }
     }
 }
