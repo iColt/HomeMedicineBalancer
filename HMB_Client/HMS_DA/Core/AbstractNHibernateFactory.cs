@@ -8,8 +8,7 @@ using System;
 
 namespace HMS_DA.Core
 {
-    public abstract class AbstractNHibernateFactory<T> : ObjectFactory, IDomainObjectFactory<T> where T : BusinessBase<T>
-    {
+    public abstract class AbstractNHibernateFactory<T> : ObjectFactory, IDomainObjectFactory<T> where T : BusinessBase<T> {
 
         protected static NHibernate.ISession Session
         {
@@ -29,23 +28,27 @@ namespace HMS_DA.Core
             return Create();
         }
 
-        public void Delete(T obj)
-        {
+        public void Delete(T obj) {
             var session = Session;
-            Session.Delete(obj);
+            session.Delete(obj);
+            MarkNew(obj);
             //TIP: why we flush session?
-            //Deletion doesn't work
             session.Flush();
         }
 
-        public T Update(T obj)
-        {
-            if (obj.IsNew)
-            {
+        public T Update(T obj) {
+            if (obj == null) {
+                return null;
+            }
+
+            if (obj.IsNew) {
                 Session.Save(obj);
             }
-            else
-            {
+            else if(obj.IsDeleted) {
+                Delete(obj);
+                return obj;
+            }
+            else {
                 var session = Session;
                 session.Update(obj);
                 MarkOld(obj);

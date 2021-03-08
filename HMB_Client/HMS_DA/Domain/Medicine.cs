@@ -50,6 +50,11 @@ namespace HMB_DA.Domain
             return DataPortal.Fetch<Medicine>(new IdCriteria<int>(id));
         }
 
+        public override void Delete()
+        {
+            base.Delete();
+            Save();
+        }
 
         #endregion
 
