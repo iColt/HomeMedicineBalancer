@@ -2,7 +2,7 @@
 using HMB_Client.Models;
 using System.Collections.Generic;
 using AutoMapper;
-using HMS_DA.Domain;
+using HMB_Domain.BusinessObjects;
 
 namespace HMB_Client.Services
 {

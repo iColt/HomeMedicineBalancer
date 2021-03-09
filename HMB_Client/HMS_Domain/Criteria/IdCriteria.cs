@@ -1,4 +1,4 @@
-﻿namespace HMS_DA.Criteria
+﻿namespace HMB_Domain.Criteria
 {
     public class IdCriteria<T>
     {

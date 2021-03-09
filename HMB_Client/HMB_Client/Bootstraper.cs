@@ -25,6 +25,7 @@ namespace HMB_Client
             RegisterDependencies();
             RegisterMappings();
             container = UnityContainer;
+            //The only call that holds reference to DAL proj
             new DataAccessModule().Run(container);
             //TODO: When some framework will be added, we need to move it somewhere else
             LoadCache();

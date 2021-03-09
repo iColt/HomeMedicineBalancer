@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HMB_DA.Domain;
+using HMB_Domain.BusinessObjects;
 
 namespace HMB_Client.Models.Profiles
 {

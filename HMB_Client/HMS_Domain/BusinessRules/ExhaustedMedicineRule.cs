@@ -3,7 +3,7 @@ using Csla.Reflection;
 using Csla.Rules;
 using System;
 
-namespace HMS_DA.BusinessRules
+namespace HMB_Domain.BusinessRules
 {
    public class ExhaustedMedicineRule : AuthorizationRule
     {

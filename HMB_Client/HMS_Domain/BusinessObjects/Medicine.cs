@@ -1,12 +1,11 @@
 ﻿using System;
 using Csla;
-using HMS_DA.Criteria;
-using HMS_DA.DomainFactories;
+using HMB_Domain.Criteria;
 
-namespace HMB_DA.Domain
+namespace HMB_Domain.BusinessObjects
 {
     [Serializable]
-    [Csla.Server.ObjectFactory(typeof(MedicineFactory))]
+    [Csla.Server.ObjectFactory("HMS_DA.DomainFactories.MedicineFactory, HMS_DA")]
     public class Medicine : Object<Medicine>
     {
 

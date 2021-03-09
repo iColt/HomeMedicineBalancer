@@ -1,7 +1,7 @@
 ﻿using System;
 using Csla;
 
-namespace HMB_DA.Domain
+namespace HMB_Domain.BusinessObjects
 {
     [Serializable]
     public abstract class Object<T> : BusinessBase<T> where T : Object<T>

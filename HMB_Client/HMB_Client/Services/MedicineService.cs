@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using HMB_Client.Interfaces;
 using HMB_Client.Models;
-using Domain = HMB_DA.Domain;
 using System.Collections.Generic;
-using HMS_DA.Domain;
-using HMB_DA.Domain;
+using HMB_Domain.BusinessObjects;
 
 namespace HMB_Client.Services
 {

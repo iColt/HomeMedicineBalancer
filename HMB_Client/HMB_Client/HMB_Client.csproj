@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HMS_DA\HMS_DA.csproj" />
+    <ProjectReference Include="..\HMS_Domain\HMS_Domain.csproj" />
   </ItemGroup>
 
 </Project>

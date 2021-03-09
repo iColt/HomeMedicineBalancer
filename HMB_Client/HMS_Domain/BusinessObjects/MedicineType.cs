@@ -1,12 +1,11 @@
 ﻿using Csla;
-using HMS_DA.Criteria;
-using HMS_DA.DomainFactories;
+using HMB_Domain.Criteria;
 using System;
 
-namespace HMB_DA.Domain
+namespace HMB_Domain.BusinessObjects
 {
     [Serializable]
-    [Csla.Server.ObjectFactory(typeof(MedicineTypeFactory))]
+    [Csla.Server.ObjectFactory("HMS_DA.DomainFactories.MedicineTypeFactory, HMS_DA")]
     public class MedicineType : BusinessBase<MedicineType>
     {
 

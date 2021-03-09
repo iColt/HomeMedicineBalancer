@@ -16,4 +16,8 @@
     <PackageReference Include="Unity.Container" Version="5.11.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HMS_Domain\HMS_Domain.csproj" />
+  </ItemGroup>
+
 </Project>

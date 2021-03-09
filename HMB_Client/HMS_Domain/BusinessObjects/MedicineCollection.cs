@@ -1,14 +1,12 @@
 ﻿using Csla;
-using HMB_DA.Domain;
-using HMS_DA.Criteria;
-using HMS_DA.DomainFactories;
+using HMB_Domain.Criteria;
 using System;
 using System.Collections.Generic;
 
-namespace HMS_DA.Domain
+namespace HMB_Domain.BusinessObjects
 {
     [Serializable]
-    [Csla.Server.ObjectFactory(typeof(MedicineCollectionFactory))]
+    [Csla.Server.ObjectFactory("HMS_DA.DomainFactories.MedicineCollectionFactory, HMS_DA")]
     public class MedicineCollection : BusinessListBase<MedicineCollection, Medicine>
     {
         public MedicineCollection() { }
@@ -24,7 +22,7 @@ namespace HMS_DA.Domain
         }
 
 
-        internal static MedicineCollection New()
+        public static MedicineCollection New()
         {
             return DataPortal.Create<MedicineCollection>();
         }

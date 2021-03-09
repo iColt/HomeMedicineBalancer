@@ -1,7 +1,6 @@
-﻿using HMB_DA.Domain;
+﻿using HMB_Domain.BusinessObjects;
 using HMS_DA.Core;
-using HMS_DA.Criteria;
-using HMS_DA.Domain;
+using HMB_Domain.Criteria;
 using System.Collections.Generic;
 using System.Linq;
 

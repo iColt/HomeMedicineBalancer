@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using HMB_DA.Domain;
+using HMB_Domain.BusinessObjects;
 
 namespace HMS_DA.Mappers
 {

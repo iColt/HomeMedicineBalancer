@@ -1,4 +1,4 @@
-﻿namespace HMB_DA.Domain
+﻿namespace HMB_Domain.BusinessObjects
 {
     public class Entity
     {

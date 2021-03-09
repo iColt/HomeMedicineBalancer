@@ -1,8 +1,7 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using HMB_DA.Domain;
 using HMB_DA.Mappers;
-using HMS_DA.Domain;
+using HMB_Domain.BusinessObjects;
 using HMS_DA.DomainFactories;
 using HMS_DA.Interfaces;
 using HMS_DA.Mappers;
@@ -26,7 +25,6 @@ namespace HMS_DA
             container.RegisterInstance<ISessionFactory>(CreateSessionFactory());
             container.RegisterType<IDomainObjectFactory<Medicine>, MedicineFactory>();
             container.RegisterType<IDomainObjectFactory<MedicineType>, MedicineTypeFactory>();
-
             container.RegisterType<IDomainObjectFactory<MedicineCollection>, MedicineCollectionFactory>();
             container.RegisterType<IDomainObjectFactory<MedicineTypeCollection>, MedicineTypeCollectionFactory>();
         }

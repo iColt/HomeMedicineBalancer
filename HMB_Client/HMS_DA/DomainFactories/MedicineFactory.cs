@@ -1,6 +1,6 @@
-﻿using HMB_DA.Domain;
+﻿using HMB_Domain.BusinessObjects;
 using HMS_DA.Core;
-using HMS_DA.Criteria;
+using HMB_Domain.Criteria;
 
 namespace HMS_DA.DomainFactories
 {

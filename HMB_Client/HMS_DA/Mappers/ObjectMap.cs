@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-
+using Domain = HMB_Domain.BusinessObjects;
 namespace HMB_DA.Mappers
 {
 	public sealed class ObjectMap<T> : ClassMap<Domain.Object<T>> where T : Domain.Object<T>

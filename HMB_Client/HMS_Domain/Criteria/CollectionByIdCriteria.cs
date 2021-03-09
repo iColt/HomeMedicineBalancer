@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HMS_DA.Criteria
+namespace HMB_Domain.Criteria
 {
     public class CollectionByIdCriteria<T, U> where T : IEnumerable<U>
     {
