@@ -11,13 +11,13 @@ namespace HMB_Client {
         private readonly IMedicineService medicineService;
 
         private readonly ICacheService cacheService;
-        private Medicine selectedMedicine;
-        private ObservableCollection<Medicine> medicines;
-        private ObservableCollection<MedicineType> medicineTypes;
+        private MedicineModel selectedMedicine;
+        private ObservableCollection<MedicineModel> medicines;
+        private ObservableCollection<MedicineTypeModel> medicineTypes;
 
         #region Properties
 
-        public ObservableCollection<Medicine> Medicines {
+        public ObservableCollection<MedicineModel> Medicines {
             get { return medicines; }
             set {
                 medicines = value;
@@ -25,7 +25,7 @@ namespace HMB_Client {
             }
         }
 
-        public ObservableCollection<MedicineType> MedicineTypes {
+        public ObservableCollection<MedicineTypeModel> MedicineTypes {
             get { return medicineTypes; }
             set {
                 medicineTypes = value;
@@ -33,7 +33,7 @@ namespace HMB_Client {
             }
         }
 
-        public Medicine SelectedMedicine {
+        public MedicineModel SelectedMedicine {
             get { return selectedMedicine; }
             set {
                 selectedMedicine = value;
@@ -45,7 +45,7 @@ namespace HMB_Client {
         }
 
         //TODO: refactor this?
-        public MedicineType MedicineType {
+        public MedicineTypeModel MedicineType {
             get {
                 var type = selectedMedicine?.MedicineTypeId;
                 if (type != null) {
@@ -100,8 +100,8 @@ namespace HMB_Client {
         }
 
         public void Initialize() {
-            Medicines = new ObservableCollection<Medicine>(this.medicineService.GetList());
-            MedicineTypes = new ObservableCollection<MedicineType>(cacheService.MedicineTypes);
+            Medicines = new ObservableCollection<MedicineModel>(this.medicineService.GetList());
+            MedicineTypes = new ObservableCollection<MedicineTypeModel>(cacheService.MedicineTypes);
             AddNewMedicine();
         }
 
@@ -127,7 +127,7 @@ namespace HMB_Client {
         }
 
         public void Delete(object med) {
-            var medicine = med as Medicine;
+            var medicine = med as MedicineModel;
             if (medicine == null)
                 return;
             medicineService.Delete(medicine);
@@ -141,7 +141,7 @@ namespace HMB_Client {
         }
 
         public void AddNewMedicine() {
-            SelectedMedicine = new Medicine() { CreatedDate = DateTime.Today };
+            SelectedMedicine = new MedicineModel() { CreatedDate = DateTime.Today };
         }
 
         #endregion

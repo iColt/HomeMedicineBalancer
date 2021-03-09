@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Domain = HMB_DA.Domain;
+using HMB_DA.Domain;
 
 namespace HMB_Client.Models.Profiles
 {
@@ -7,8 +7,8 @@ namespace HMB_Client.Models.Profiles
     {
         public MedicineTypeProfile()
         {
-            CreateMap<MedicineType, Domain.MedicineType>().ForMember(x => x.Id, opt => opt.Ignore());
-            CreateMap<Domain.MedicineType, MedicineType>();
+            CreateMap<MedicineTypeModel, MedicineType>().ForMember(x => x.Id, opt => opt.Ignore());
+            CreateMap<MedicineType, MedicineTypeModel>();
         }
     }
 }

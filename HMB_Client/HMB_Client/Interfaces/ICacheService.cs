@@ -6,11 +6,11 @@ namespace HMB_Client.Interfaces
     public interface ICacheService
     {
 
-        IList<MedicineType> MedicineTypes { get; set; }
+        IList<MedicineTypeModel> MedicineTypes { get; set; }
 
         void Load();
 
-        MedicineType GetMedicineType(int id);
+        MedicineTypeModel GetMedicineType(int id);
 
     }
 }

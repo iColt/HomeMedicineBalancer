@@ -33,7 +33,7 @@ namespace HMB_Client_Tests
         public void Test_Initialize_EmptyDB()
         {
             //Assume
-            _medicineServiceMock.Setup(x => x.GetList()).Returns(new List<Medicine>());
+            _medicineServiceMock.Setup(x => x.GetList()).Returns(new List<MedicineModel>());
 
             //Act
             _sut.Initialize();
@@ -99,7 +99,7 @@ namespace HMB_Client_Tests
             _medicineServiceMock.Setup(x => x.GetList()).Returns(ModelFakes.GetMedicines());
             _sut.Initialize();
             SetupObjectForSuccesfullSave();
-            _medicineServiceMock.Setup(x => x.Save(It.IsAny<Medicine>())).Callback(() => {
+            _medicineServiceMock.Setup(x => x.Save(It.IsAny<MedicineModel>())).Callback(() => {
                 _sut.SelectedMedicine.Id = _sut.Medicines.OrderByDescending(x => x.Id).First().Id + 1;        
             }
             ).Returns(_sut.SelectedMedicine);
@@ -129,7 +129,7 @@ namespace HMB_Client_Tests
             _medicineServiceMock.Setup(x => x.GetList()).Returns(ModelFakes.GetMedicines());
             _sut.Initialize();
             SetupObjectForSuccesfullSave();
-            _medicineServiceMock.Setup(x => x.Delete(It.IsAny<Medicine>())).Callback(() => raised = true);
+            _medicineServiceMock.Setup(x => x.Delete(It.IsAny<MedicineModel>())).Callback(() => raised = true);
 
             //Act
             _sut.DeleteCommand.Execute(_sut.Medicines.First(x => x.Id == 1));

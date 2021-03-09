@@ -1,4 +1,5 @@
 ﻿using Csla;
+using HMS_DA.Criteria;
 using HMS_DA.DomainFactories;
 using System;
 
@@ -44,6 +45,20 @@ namespace HMB_DA.Domain
         {
             MarkOld();
         }
+
+        #region Factory Methods
+
+        public static MedicineType New()
+        {
+            return DataPortal.Create<MedicineType>();
+        }
+
+        public static MedicineType Get(int id)
+        {
+            return DataPortal.Fetch<MedicineType>(new IdCriteria<int>(id));
+        }
+
+        #endregion
 
     }
 }

@@ -4,6 +4,7 @@ using HMB_Client.Models;
 using Domain = HMB_DA.Domain;
 using System.Collections.Generic;
 using HMS_DA.Domain;
+using HMB_DA.Domain;
 
 namespace HMB_Client.Services
 {
@@ -16,36 +17,35 @@ namespace HMB_Client.Services
             _mapper = mapper;
         }
 
-        //TODO: Medicine  collection
-        public IList<Medicine> GetList()
+        public IList<MedicineModel> GetList()
         {
             var objs = MedicineCollection.GetAll();
-            return _mapper.Map<IList<Medicine>>(objs);
+            return _mapper.Map<IList<MedicineModel>>(objs);
         }
 
-        public Medicine Save(Medicine medicine)
+        public MedicineModel Save(MedicineModel medicine)
         {
-            Domain.Medicine obj;
+            Medicine obj;
             if(medicine.Id != 0) {
-                obj = Domain.Medicine.Get(medicine.Id);
+                obj = Medicine.Get(medicine.Id);
             }
             else {
-                obj = Domain.Medicine.New();
+                obj = Medicine.New();
             }
             _mapper.Map(medicine, obj);
-            return _mapper.Map<Medicine>(obj.Save());
+            return _mapper.Map<MedicineModel>(obj.Save());
         }
 
-        public void Delete(Medicine medicine)
+        public void Delete(MedicineModel medicine)
         {
-            Domain.Medicine obj;
+            Medicine obj;
             if (medicine.Id != 0)
             {
-                obj = Domain.Medicine.Get(medicine.Id);
+                obj = Medicine.Get(medicine.Id);
             }
             else
             {
-                obj = Domain.Medicine.New();
+                obj = Medicine.New();
             }
             _mapper.Map(medicine, obj);
             obj.Delete();

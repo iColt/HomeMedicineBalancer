@@ -5,11 +5,11 @@ namespace HMB_Client.Interfaces
 {
     public interface IMedicineService : IDataService
     {
-        IList<Medicine> GetList();
+        IList<MedicineModel> GetList();
 
-        Medicine Save(Medicine medicine);
+        MedicineModel Save(MedicineModel medicine);
 
-        void Delete(Medicine medicine);
+        void Delete(MedicineModel medicine);
 
     }
 }

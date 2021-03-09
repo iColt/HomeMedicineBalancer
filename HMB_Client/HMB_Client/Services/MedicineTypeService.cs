@@ -15,13 +15,11 @@ namespace HMB_Client.Services
             _mapper = mapper;
         }
 
-        //TODO: Medicine type collection
-        public IList<MedicineType> GetList()
+        public IList<MedicineTypeModel> GetList()
         {
 
-            // var objs = MedicineTypeCollection.GetByIds(new List<int>());
             var objs = MedicineTypeCollection.GetAll();
-            return _mapper.Map<IList<MedicineType>>(objs);
+            return _mapper.Map<IList<MedicineTypeModel>>(objs);
         }
     }
 }

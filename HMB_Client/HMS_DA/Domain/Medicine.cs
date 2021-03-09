@@ -38,6 +38,20 @@ namespace HMB_DA.Domain
             }
         }
 
+        //TIP: Navigation property in csla - style. Independent from DAL
+        public static readonly PropertyInfo<MedicineType> MedicineTypeProperty = RegisterProperty<MedicineType>(p => p.MedicineType);
+        public virtual MedicineType MedicineType
+        {
+            get
+            {
+                if (!FieldManager.FieldExists(MedicineTypeProperty)) { 
+                    LoadProperty(MedicineTypeProperty, MedicineType.Get(MedicineTypeId));
+                }
+
+                return GetProperty<MedicineType>(MedicineTypeProperty);
+            }
+        }
+
         #region Factory Methods
 
         public static Medicine New()
@@ -68,7 +82,6 @@ namespace HMB_DA.Domain
             // call base class implementation to add data annotation rules to BusinessRules 
             base.AddBusinessRules();
 
-            //Rule. Не понятно, как врубить 
         }
 
     }

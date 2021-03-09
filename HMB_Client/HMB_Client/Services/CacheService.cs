@@ -10,14 +10,14 @@ namespace HMB_Client.Services
 
         private readonly IMedicineTypeService medicineTypeService;
 
-        public IList<MedicineType> MedicineTypes { get; set; } = new List<MedicineType>(); 
+        public IList<MedicineTypeModel> MedicineTypes { get; set; } = new List<MedicineTypeModel>(); 
 
         public CacheService(IMedicineTypeService medicineTypeService)
         {
             this.medicineTypeService = medicineTypeService;
         }
 
-        public MedicineType GetMedicineType(int id)
+        public MedicineTypeModel GetMedicineType(int id)
         {
             return MedicineTypes.FirstOrDefault(x => x.Id == id);
         }

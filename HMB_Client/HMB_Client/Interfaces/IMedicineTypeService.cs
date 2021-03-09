@@ -5,6 +5,6 @@ namespace HMB_Client.Interfaces
 {
     public interface IMedicineTypeService : IDataService
     {
-        IList<MedicineType> GetList();
+        IList<MedicineTypeModel> GetList();
     }
 }

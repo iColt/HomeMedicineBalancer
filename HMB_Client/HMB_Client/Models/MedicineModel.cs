@@ -2,7 +2,7 @@
 
 namespace HMB_Client.Models
 {
-    public class Medicine
+    public class MedicineModel
     {
         public int Id { get; set; }
 
@@ -16,7 +16,7 @@ namespace HMB_Client.Models
 
         public DateTime CreatedDate { get; set; }
 
-        public MedicineType MedicineType { get; set; }
+        public MedicineTypeModel MedicineType { get; set; }
 
     }
 }

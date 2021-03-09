@@ -2,8 +2,6 @@
 using Csla.Reflection;
 using Csla.Rules;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HMS_DA.BusinessRules
 {

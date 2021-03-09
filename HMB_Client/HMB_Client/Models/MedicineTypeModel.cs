@@ -1,6 +1,6 @@
 ﻿namespace HMB_Client.Models
 {
-    public class MedicineType
+    public class MedicineTypeModel
     {
         public int Id { get; set; }
 
