@@ -5,7 +5,8 @@ using HMB_Domain.Criteria;
 namespace HMB_Domain.BusinessObjects
 {
     [Serializable]
-    [Csla.Server.ObjectFactory("HMS_DA.DomainFactories.MedicineFactory, HMS_DA")]
+    //TIP: assembly qualified name of factory
+    [Csla.Server.ObjectFactory("HMB_DA.DomainFactories.MedicineFactory, HMB_DA")]
     public class Medicine : Object<Medicine>
     {
 

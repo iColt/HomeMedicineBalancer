@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using HMB_Domain.BusinessObjects;
 
-namespace HMS_DA.Mappers
+namespace HMB_DA.Mappers
 {
     public sealed class MedicineTypeMap : ClassMap<MedicineType>
 	{

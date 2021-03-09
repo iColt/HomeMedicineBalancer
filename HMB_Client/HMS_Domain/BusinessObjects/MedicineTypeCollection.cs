@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace HMB_Domain.BusinessObjects
 {
     [Serializable]
-    [Csla.Server.ObjectFactory("HMS_DA.DomainFactories.MedicineTypeCollectionFactory, HMS_DA")]
+    [Csla.Server.ObjectFactory("HMB_DA.DomainFactories.MedicineTypeCollectionFactory, HMB_DA")]
     public class MedicineTypeCollection : BusinessListBase<MedicineTypeCollection, MedicineType>
     {
 

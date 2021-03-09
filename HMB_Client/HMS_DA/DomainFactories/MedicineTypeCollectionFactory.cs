@@ -1,10 +1,10 @@
 ﻿using HMB_Domain.BusinessObjects;
-using HMS_DA.Core;
+using HMB_DA.Core;
 using HMB_Domain.Criteria;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HMS_DA.DomainFactories
+namespace HMB_DA.DomainFactories
 {
     public class MedicineTypeCollectionFactory : AbstractNHibernateCollectionFactory<MedicineTypeCollection>
     {

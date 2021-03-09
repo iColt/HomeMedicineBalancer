@@ -1,8 +1,8 @@
 ﻿using HMB_Domain.BusinessObjects;
-using HMS_DA.Core;
+using HMB_DA.Core;
 using HMB_Domain.Criteria;
 
-namespace HMS_DA.DomainFactories
+namespace HMB_DA.DomainFactories
 {
     public class MedicineTypeFactory : AbstractNHibernateFactory<MedicineType>
     {

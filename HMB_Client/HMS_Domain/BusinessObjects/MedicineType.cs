@@ -5,7 +5,7 @@ using System;
 namespace HMB_Domain.BusinessObjects
 {
     [Serializable]
-    [Csla.Server.ObjectFactory("HMS_DA.DomainFactories.MedicineTypeFactory, HMS_DA")]
+    [Csla.Server.ObjectFactory("HMB_DA.DomainFactories.MedicineTypeFactory, HMB_DA")]
     public class MedicineType : BusinessBase<MedicineType>
     {
 

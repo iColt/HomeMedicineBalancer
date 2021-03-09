@@ -2,13 +2,13 @@
 using FluentNHibernate.Cfg.Db;
 using HMB_DA.Mappers;
 using HMB_Domain.BusinessObjects;
-using HMS_DA.DomainFactories;
-using HMS_DA.Interfaces;
-using HMS_DA.Mappers;
+using HMB_DA.DomainFactories;
+using HMB_DA.Interfaces;
+using HMB_DA.Mappers;
 using NHibernate;
 using Unity;
 
-namespace HMS_DA
+namespace HMB_DA
 {
     public class DataAccessModule
     {

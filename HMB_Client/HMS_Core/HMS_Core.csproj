@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HMS_DA\HMS_DA.csproj" />
+    <ProjectReference Include="..\HMS_DA\HMB_DA.csproj" />
   </ItemGroup>
 
   <ItemGroup>

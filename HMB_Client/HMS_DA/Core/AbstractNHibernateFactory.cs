@@ -2,11 +2,11 @@
 using Csla;
 using Csla.Reflection;
 using Csla.Server;
-using HMS_DA.Interfaces;
+using HMB_DA.Interfaces;
 using NHibernate;
 using System;
 
-namespace HMS_DA.Core
+namespace HMB_DA.Core
 {
     public abstract class AbstractNHibernateFactory<T> : ObjectFactory, IDomainObjectFactory<T> where T : BusinessBase<T> {
 

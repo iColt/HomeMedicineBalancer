@@ -1,6 +1,6 @@
 ﻿using NHibernate;
 
-namespace HMS_DA.Interfaces
+namespace HMB_DA.Interfaces
 {
     public interface IDomainObjectFactory<T>
     {

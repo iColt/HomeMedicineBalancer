@@ -1,11 +1,11 @@
 ﻿using CommonServiceLocator;
 using Csla.Reflection;
 using Csla.Server;
-using HMS_DA.Interfaces;
+using HMB_DA.Interfaces;
 using NHibernate;
 using System;
 
-namespace HMS_DA.Core
+namespace HMB_DA.Core
 {
     public abstract class AbstractNHibernateCollectionFactory<T> : ObjectFactory, IDomainObjectFactory<T>
     {

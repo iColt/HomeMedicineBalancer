@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>HMB_Domain</AssemblyName>
+    <RootNamespace>HMB_Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
