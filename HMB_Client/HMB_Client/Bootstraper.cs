@@ -37,7 +37,7 @@ namespace HMB_Client
             cacheService.Load();
         }
 
-        public void RegisterContainer(IUnityContainer container)
+        public static void RegisterContainer(IUnityContainer container)
         {
             var locator = new UnityServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => locator);
@@ -56,9 +56,10 @@ namespace HMB_Client
         private void RegisterMappings()
         {
             var config = new MapperConfiguration(cfg => {
+                cfg.ShouldMapMethod = (m => false);
                 cfg.AddMaps(nameof(HMB_Client));
             });
-            UnityContainer.RegisterInstance<IMapper>(config.CreateMapper());
+            UnityContainer.RegisterInstance(config.CreateMapper());
         }
     }
 }
